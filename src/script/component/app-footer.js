@@ -13,7 +13,7 @@ class AppFooter extends HTMLElement {
     this.shadowDOM.innerHTML = `
       <style>
         .footer {
-          margin-top: 70px;
+          margin-top: 40px;
           border-top: 2px solid #014A7C;
           border-bottom: 8px solid #014A7C;
           padding: 8px 10px;
