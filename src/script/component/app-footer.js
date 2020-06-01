@@ -23,11 +23,12 @@ class AppFooter extends HTMLElement {
 
         .link {
           text-decoration: none;
+          color: #005691;
         }
       </style>
       
       <div class="footer">
-        <b><a href="https://dicoding.com" target="_blank" class="link">Dicoding Indonesia</a> - Indra Rahmanto - <a href="https://covid19.mathdro.id" target="_blank" class="link">covid19.mathdro.id</a></b>
+        <b><a href="https://dicoding.com" target="_blank" class="link">Dicoding Indonesia</a> - <a href="https://www.dicoding.com/users/771761" target="_blank" class="link">Indra Rahmanto</a> - <a href="https://covid19.mathdro.id/api" target="_blank" class="link">covid19.mathdro.id</a></b>
       </div>
     `;
   }

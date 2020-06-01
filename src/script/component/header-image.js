@@ -131,7 +131,12 @@ class HeaderImage extends HTMLElement {
           display: inline;
           border-radius: 2px;
           width: 70%;
-        }    
+          font-family : inherit;
+        }
+
+        input[list] {
+          font-family : inherit;
+        }
 
         #checkButtonElement {
           padding: 13px;
@@ -322,6 +327,10 @@ class HeaderImage extends HTMLElement {
         @media screen and (max-width: 399px) {
           #container {
             margin-top: 110px;
+          }
+
+          #checkButtonElement {
+            padding: 2px;
           }
         }
 

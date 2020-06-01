@@ -19,7 +19,7 @@ class LastestInfo extends HTMLElement {
         display: flex;
         flex-flow: row;
         box-shadow: 0px 4px 5px 1px rgba(151, 149, 149, 0.4);
-        margin: 70px 0px 0px 0px;
+        margin: 20px 0px 30px 0px;
         padding: 17px 35px 17px 35px;
       }
 
@@ -42,7 +42,7 @@ class LastestInfo extends HTMLElement {
         text-align: center;
         display: inline-block;
         background-color: white;
-        border-radius: 2px;
+        border-radius: 5px;
         font-size: 17px;
         margin-left: auto;
         border: 2px solid #F66283;

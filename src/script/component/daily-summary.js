@@ -28,7 +28,7 @@ class DailySummary extends HTMLElement {
         }
 
         #summary-info {
-          margin: 0px 35px 5px 35px;
+          margin: 20px 35px 20px 35px;
         }
 
         .chart {

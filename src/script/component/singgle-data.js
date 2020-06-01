@@ -56,21 +56,23 @@ class SinggleData extends HTMLElement {
   
       #heading {
         width: 100%;
-        background-color: #e8f1f5;
+        background-color: #ffffff;
         border-left: 6px solid #004a7c;
-        border-top: 1px solid #004a7c;
-        border-right: 1px solid #004a7c;
-        border-bottom: 1px solid #004a7c;
+        border-top: 2px solid #004a7c;
+        border-right: 6px solid #004a7c;
+        border-bottom: 2px solid #004a7c;
+        border-radius: 5px 5px 5px 5px;
         margin-left: -5px;
         padding-right: 20px;
         padding: 10px 0px 10px 0px;
         color: #005691;
         font-weight: 700;
+        text-align: center;
+        display: inline-block;
       }
 
       .singgle-country {
-        margin-left: 20px;
-        font-size: 20px;
+        font-size: 30px;
       }
 
       #country-info {
@@ -79,7 +81,7 @@ class SinggleData extends HTMLElement {
         justify-content: center;
         flex-direction: row;
         position: static;
-        margin: 10px 35px 5px 35px;
+        margin: 30px 35px 25px 35px;
         font-size: 18px;
       }
 
@@ -106,7 +108,7 @@ class SinggleData extends HTMLElement {
 
       #last-update {
         text-align: right;
-        margin: 10px 0px -10px 0px;
+        margin: 20px 0px -5px 0px;
         border-top: 1px solid #e8f1f5;
         color: #979595;
         margin-right: 5px;
@@ -114,6 +116,10 @@ class SinggleData extends HTMLElement {
 
       .percentage {
         color: #808080;
+      }
+
+      table {
+        margin-top: 10px;
       }
 
       @media screen and (max-width: 750px) {
