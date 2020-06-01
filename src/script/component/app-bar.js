@@ -29,6 +29,7 @@ class AppBar extends HTMLElement {
       border-bottom: 6px solid #004a7c;
       position: fixed;
       top: 0;
+      z-index: 3;
     }
 
     .header h2 {

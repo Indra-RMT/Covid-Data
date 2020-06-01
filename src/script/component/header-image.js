@@ -60,9 +60,8 @@ class HeaderImage extends HTMLElement {
           flex-flow: column;
           box-shadow: 0px 1px 5px 1px rgba(151, 149, 149, 0.2);
           padding: 10px 0px 10px 0px;
-          margin-bottom: 60px;
-          margin-top: 58px;
-          height: 400px;
+          margin: 58px 0px 60px; 0px;
+          height: 450px;
           flex-direction: row;
           background-image: url("./src/images/header-image.jpg");
           background-size: cover;
@@ -81,7 +80,7 @@ class HeaderImage extends HTMLElement {
           display: flex;
           flex-direction: column;
           margin-left: 8%;
-          margin-top: 30px;
+          margin-top: 25px;
         }
 
         .accumulation {
@@ -94,70 +93,110 @@ class HeaderImage extends HTMLElement {
 
         .accumulation-text {
           padding: 11px 15px;
-          margin: 15px 0px;
+          margin: 19px 0px;
           border-top: 2px solid #ffffff;
           border-bottom: 2px solid #ffffff;
           border-left: 8px solid #ffffff;
           color: #ffffff;
           font-size: 27px;
+          border-radius: 5px 0px 0px 5px;
         }
 
         .info-text {
           color: #ffffff;
           border-bottom: 1px solid #ffffff;
           border-left: 5px solid #ffffff;
-          margin: -15px 0px 0px 20px;
+          margin: -20px 0px 0px 20px;
           font-size: 15px;
           padding: 3px 3px 3px 10px;
-          background-color: #10306C;
+          background-color: #14213C;
+          border-radius: 0px 0px 0px 4px;
         }
 
         h1 {
-          font-size: 50px;
+          font-size: 55px;
           color: white;
-        }
-
-        .select-country {
-          font-size: 30px;
-          color: white;
-          margin-top: 40px;
-        }
-
-        #checkButtonElement {
-          border: none;
-          padding: 0px 5px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 16px;
-          margin: 4px 2px;
-          transition-duration: 0.4s;
-          cursor: pointer;
-          background-color: white;
-          color: black;
-          border: 2px solid #555555;
-          border-radius: 4px;
-        }
-
-        .input-area {
-          display: inline;
-        }
+        }        
 
         .centerize-world-data {
           display: none;
         }
 
-        @media screen and (max-width: 1060px) {
-          #container {
-            display: flex;
-            flex-flow: row;
-            box-shadow: 0px 1px 5px 1px rgba(151, 149, 149, 0.2);
-            padding: 10px 0px 10px 0px;
-            margin-bottom: 20px;
-            height: 400px;
-            flex-direction: row;
+        input[name="searchElement"] {
+          padding: 13px;
+          border: 0;
+          border-bottom: 1px solid #14213C;
+          font-weight: bold;
+          font-size: 17px;
+          display: inline;
+          border-radius: 2px;
+          width: 70%;
+        }    
+
+        #checkButtonElement {
+          padding: 13px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          background-color: white;
+          border: 0;
+          border-radius: 2px;
+          font-weight: bold;
+          font-size: 17px;
+          width: 23%;
+          background-color: #F66283;
+          margin-left: auto;
+        }
+
+        .select-country {
+          margin-top: 40px;
+          max-width: 800px;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+          padding: 5px;
+          border-radius: 5px;
+          display: flex;
+          top: 10px;
+          background-color: white;
+          -webkit-box-shadow: 6px 5px 5px 3px rgba(0,0,0,0.25);
+          -moz-box-shadow: 6px 5px 5px 3px rgba(0,0,0,0.25);
+          box-shadow: 6px 5px 5px 3px rgba(0,0,0,0.25);
+        }
+        
+        input:focus {
+          outline: 0;
+          border-bottom: 2px solid #14213C;
+        }
+        
+        input:focus::placeholder {
+          font-weight: bold;
+        }
+        
+        input::placeholder {
+          color: cornflowerblue;
+          font-weight: normal;
+        }
+
+        .block-choose {
+          background-color: #281E3C;
+          position: absolute;
+          margin-top: -26px;
+          padding: 4px 5px;
+          color: white;
+          border-radius: 3px;
+          font-size: 15px;
+          z-index: 2;
+          -webkit-box-shadow: 4px 3px 4px 3px rgba(0,0,0,0.25);
+          -moz-box-shadow: 4px 3px 4px 3px rgba(0,0,0,0.25);
+          box-shadow: 4px 3px 4px 3px rgba(0,0,0,0.25);
+        }
+        
+        @media screen and (max-width: 1317px) {  
+          .select-country {
+            margin-top: -29px;
           }
-  
+        }
+
+        @media screen and (max-width: 1060px) {  
           .box {
             flex-basis: 50%;
           }
@@ -165,22 +204,15 @@ class HeaderImage extends HTMLElement {
           .box-2 {
             flex-basis: 50%;
           }
+        }
 
-          .select-country {
-            margin-top: 20px;
+        @media screen and (max-width: 1020px) {  
+          .main-text {
+            margin-left: 4%;
           }
         }
 
-        @media screen and (max-width: 1015px) {
-          #container {
-            display: flex;
-            flex-flow: row;
-            box-shadow: 0px 1px 5px 1px rgba(151, 149, 149, 0.2);
-            padding: 10px 0px 10px 0px;
-            margin-bottom: 20px;
-            height: 400px;
-          }
-  
+        @media screen and (max-width: 880px) {  
           .box {
             flex-basis: 100%;
           }
@@ -194,7 +226,7 @@ class HeaderImage extends HTMLElement {
           }
 
           h1 {
-            font-size: 42px;
+            font-size: 47px;
           }
 
           .centerize-world-data {
@@ -211,7 +243,9 @@ class HeaderImage extends HTMLElement {
             border-bottom: 1px solid #ffffff;
             border-left: 3px solid #ffffff;
             border-right: 3px solid #ffffff;
-            padding: 4px 0px;
+            padding: 4px 2px;
+            border-radius: 5px;
+            margin: 2px;
           }
 
           .box-wold-text {
@@ -224,17 +258,7 @@ class HeaderImage extends HTMLElement {
           } 
         }
         
-        @media screen and (max-width: 750px) {
-          #container {
-            display: flex;
-            flex-flow: row;
-            box-shadow: 0px 1px 5px 1px rgba(151, 149, 149, 0.2);
-            padding: 10px 0px 10px 0px;
-            margin-bottom: 20px;
-            height: 400px;
-            flex-direction: column;
-          }
-  
+        @media screen and (max-width: 750px) {  
           .box {
             flex-basis: 100%;
           }
@@ -247,14 +271,14 @@ class HeaderImage extends HTMLElement {
             margin: -10px 25px 10px 25px;
           }
 
-          h1 {
-            font-size: 40px;
+          .select-country {
+            margin-top: 70px;
           }
         }
         
-        @media screen and (max-width: 660px) {
+        @media screen and (max-width: 667px) {
           #container {
-            margin-top: 85px;
+            margin-top: 68px;
           }
 
           .centerize-world-data {
@@ -263,7 +287,7 @@ class HeaderImage extends HTMLElement {
             text-align: center;
             font-size: 20px;
             color: white;
-            margin-top: -10px;
+            margin-top: -20px;
           }
           
           .box-world {
@@ -275,22 +299,57 @@ class HeaderImage extends HTMLElement {
           }
 
           .main-text {
-            margin: -20px 25px 0px 25px;
+            margin: 0px 25px 0px 25px;
           }
 
           h1 {
-            font-size: 30px;
+            font-size: 39px;
           }
 
           .select-country {
-            margin-top: 20px;
-            font-size: 25px;
+            margin-top: 40px;
           }
         }
 
-        @media screen and (max-width: 414px) {
+        @media screen and (max-width: 522px) {
+          .select-country {
+            -webkit-box-shadow: 4px 2px 5px 3px rgba(0,0,0,0.25);
+            -moz-box-shadow: 4px 2px 5px 3px rgba(0,0,0,0.25);
+            box-shadow: 4px 2px 5px 3px rgba(0,0,0,0.25);
+          }
+        }
+
+        @media screen and (max-width: 399px) {
           #container {
             margin-top: 110px;
+          }
+        }
+
+        @media screen and (max-width: 382px) {
+          h1 {
+            font-size: 35px;
+          }
+
+          .select-country {
+            margin-top: 60px;
+          }
+        }
+
+        @media screen and (max-width: 348px) {
+          #container {
+            margin-top: 100px;
+          }
+
+          h1 {
+            font-size: 32px;
+            margin-bottom: 40px;
+          }
+        }
+
+        @media screen and (max-width: 324px) {
+          h1 {
+            font-size: 30px;
+            margin-bottom: 47px;
           }
         }
       </style>
@@ -312,14 +371,12 @@ class HeaderImage extends HTMLElement {
             </div>
           </div>
           <div class="select-country">
-            <label for="searchElement"><b><u>Select country</u> :</b></label>
-            <div class="input-area">
-              <input value="Indonesia" list="country-list" id="searchElement" name="searchElement" />
-              <datalist id="country-list">
-                ${this._arrCountry}
-              </datalist>
-              <button id="checkButtonElement">check</button>
-            </div>
+            <div class="block-choose">Choose Country</div>
+            <input value="Indonesia" list="country-list" id="searchElement" name="searchElement" placeholder="">
+            <datalist id="country-list">
+              ${this._arrCountry}
+            </datalist>
+            <button id="checkButtonElement">check</button>
           </div>
         </div>
         <div class="box-2">

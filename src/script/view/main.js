@@ -1,6 +1,7 @@
 import "../component/header-image.js";
 import "../component/singgle-data.js";
 import "../component/daily-summary.js";
+import "../component/data-tables.js";
 import "../component/app-footer.js";
 import moment from "moment";
 import DataSource from '../data/data-source.js';
