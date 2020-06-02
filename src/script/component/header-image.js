@@ -116,6 +116,7 @@ class HeaderImage extends HTMLElement {
         h1 {
           font-size: 55px;
           color: white;
+          margin-bottom: 60px;
         }        
 
         .centerize-world-data {
@@ -155,7 +156,6 @@ class HeaderImage extends HTMLElement {
         }
 
         .select-country {
-          margin-top: 40px;
           max-width: 800px;
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
           padding: 5px;
@@ -228,6 +228,7 @@ class HeaderImage extends HTMLElement {
 
           h1 {
             font-size: 47px;
+            margin-bottom: 20px;
           }
 
           .centerize-world-data {
@@ -320,13 +321,21 @@ class HeaderImage extends HTMLElement {
           }
         }
 
-        @media screen and (max-width: 399px) {
+        @media screen and (max-width: 415px) {
           #container {
             margin-top: 110px;
           }
 
+          h1 {
+            font-size: 36px;
+          }
+
           #checkButtonElement {
             padding: 2px;
+          }
+
+          .select-country {
+            margin-top: 57px;
           }
         }
 
@@ -340,7 +349,7 @@ class HeaderImage extends HTMLElement {
           }
         }
 
-        @media screen and (max-width: 348px) {
+        @media screen and (max-width: 364px) {
           #container {
             margin-top: 100px;
           }
@@ -351,10 +360,20 @@ class HeaderImage extends HTMLElement {
           }
         }
 
-        @media screen and (max-width: 324px) {
+        @media screen and (max-width: 344px) {
           h1 {
             font-size: 30px;
             margin-bottom: 47px;
+          }
+        }
+
+        @media screen and (max-width: 320px) {
+          h1 {
+            font-size: 28px;
+          }
+
+          .select-country {
+            margin-top: 69px;
           }
         }
       </style>
