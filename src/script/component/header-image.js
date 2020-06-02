@@ -130,8 +130,9 @@ class HeaderImage extends HTMLElement {
           font-size: 17px;
           display: inline;
           border-radius: 2px;
-          width: 70%;
+          width: 71%;
           font-family : inherit;
+          margin-left: auto;
         }
 
         input[list] {
@@ -174,11 +175,6 @@ class HeaderImage extends HTMLElement {
         
         input:focus::placeholder {
           font-weight: bold;
-        }
-        
-        input::placeholder {
-          color: cornflowerblue;
-          font-weight: normal;
         }
 
         .block-choose {

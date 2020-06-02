@@ -19,7 +19,7 @@ class LastestInfo extends HTMLElement {
         display: flex;
         flex-flow: row;
         box-shadow: 0px 4px 5px 1px rgba(151, 149, 149, 0.4);
-        margin: 20px 0px 30px 0px;
+        margin: 10px 0px 30px 0px;
         padding: 17px 35px 17px 35px;
       }
 
@@ -75,7 +75,6 @@ class LastestInfo extends HTMLElement {
         }
   
         .box-2 {
-          margin-top: 20px;
           width: 100%;
           background-color: blue;
           text-align: center;
@@ -89,7 +88,7 @@ class LastestInfo extends HTMLElement {
 
       @media screen and (max-width: 452px) {
         article {
-          margin: 20px 0px -10px 0px;
+          margin: 10px 0px -10px 0px;
         }
       }
       </style>
