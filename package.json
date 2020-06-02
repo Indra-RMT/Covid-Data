@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "lint": "eslint ./src",
     "start-dev": "webpack-dev-server --config webpack.dev.js --open",
     "build": "webpack --config webpack.prod.js"
   },
@@ -15,6 +16,8 @@
     "babel-loader": "^8.1.0",
     "copy-webpack-plugin": "^6.0.1",
     "css-loader": "^3.5.3",
+    "eslint": "^7.1.0",
+    "eslint-config-google": "^0.14.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.3.0",
     "style-loader": "^1.2.1",

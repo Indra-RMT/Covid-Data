@@ -2,17 +2,19 @@ class HeaderImage extends HTMLElement {
   constructor() {
     super();
     this.shadowDOM = this.attachShadow({
-      mode: "open"
+      mode: 'open',
     });
   }
 
   set data(covid) {
-    const numberWithCommas = number => {
-      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
+    const numberWithCommas = (number) => {
+      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    };
 
-    const percentageRecovered = covid.recovered.value / covid.confirmed.value * 100;
-    const percentageDeaths = covid.deaths.value / covid.confirmed.value * 100;
+    const percentageRecovered =
+      covid.recovered.value / covid.confirmed.value * 100;
+    const percentageDeaths =
+      covid.deaths.value / covid.confirmed.value * 100;
 
     this._confirmed = numberWithCommas(covid.confirmed.value);
     this._recovered = numberWithCommas(covid.recovered.value);
@@ -24,8 +26,7 @@ class HeaderImage extends HTMLElement {
   }
 
   set allCountry(allCountry) {
-
-    this._arrCountry = allCountry.countries.map(r => {
+    this._arrCountry = allCountry.countries.map((r) => {
       return `<option id="${r.name}">${r.name}</option>`;
     }).join();
 
@@ -45,11 +46,11 @@ class HeaderImage extends HTMLElement {
   }
 
   set refresh(e) {
-    this.shadowDOM.querySelector("#searchElement").value = e;
+    this.shadowDOM.querySelector('#searchElement').value = e;
   }
 
   get value() {
-    return this.shadowDOM.querySelector("#searchElement").value;
+    return this.shadowDOM.querySelector('#searchElement').value;
   }
 
   render() {
@@ -337,6 +338,14 @@ class HeaderImage extends HTMLElement {
           .select-country {
             margin-top: 57px;
           }
+
+          input[name="searchElement"] {
+            width: 60%;
+          }
+
+          #checkButtonElement {
+            width: 35%;
+          }
         }
 
         @media screen and (max-width: 382px) {
@@ -385,18 +394,31 @@ class HeaderImage extends HTMLElement {
           <br>
           <div class="centerize-world-data">
             <div class="box-wold">
-              <b>${this._confirmed} <br> <span class="box-wold-text">Confirmed</span></b>
+              <b>${this._confirmed} 
+                <br> 
+                <span class="box-wold-text">Confirmed</span>
+             </b>
             </div>
             <div class="box-wold">
-              <b>${this._recovered} <br> <span class="box-wold-text">Recovered (${this._percentageRecovered.toFixed(2)}%)</span></b>
+              <b>${this._recovered} 
+                <br>
+                <span class="box-wold-text">
+                  Recovered (${this._percentageRecovered.toFixed(2)}%)
+                </span>
+              </b>
             </div>
             <div class="box-wold">
-              <b>${this._deaths} <br> <span class="box-wold-text">Deaths (${this._percentageDeaths.toFixed(2)}%)</span></b>
+              <b>${this._deaths}
+                <br> <span class="box-wold-text">
+                  Deaths (${this._percentageDeaths.toFixed(2)}%)
+                </span>
+              </b>
             </div>
           </div>
           <div class="select-country">
             <div class="block-choose">Choose Country</div>
-            <input value="Indonesia" list="country-list" id="searchElement" name="searchElement" placeholder="">
+            <input value="Indonesia" list="country-list" 
+              id="searchElement" name="searchElement" placeholder="">
             <datalist id="country-list">
               ${this._arrCountry}
             </datalist>
@@ -405,19 +427,31 @@ class HeaderImage extends HTMLElement {
         </div>
         <div class="box-2">
           <div class="accumulation">
-            <div class="accumulation-text"><b>${this._confirmed} Confirmed</b></div>
-            <div class="accumulation-text"><b>${this._recovered} Recovered</b></div>
-            <div class="info-text"><b>Recovery Rate ${this._percentageRecovered.toFixed(2)}%</b></div>
-            <div class="accumulation-text"><b>${this._deaths} Deaths</b></div>
-            <div class="info-text"><b>Fatality Rate ${this._percentageDeaths.toFixed(2)}%</b></div>
+            <div class="accumulation-text">
+              <b>${this._confirmed} Confirmed</b>
+            </div>
+            <div class="accumulation-text">
+              <b>${this._recovered} Recovered</b>
+            </div>
+            <div class="info-text">
+              <b>Recovery Rate ${this._percentageRecovered.toFixed(2)}%</b>
+            </div>
+            <div class="accumulation-text">
+              <b>${this._deaths} Deaths</b>
+            </div>
+            <div class="info-text">
+              <b>Fatality Rate ${this._percentageDeaths.toFixed(2)}%</b>
+           </div>
           </div>
         </div>
       </div>
     `;
 
-    this.shadowDOM.querySelector("#checkButtonElement").addEventListener("click", this._clickEvent);
-    this.shadowDOM.querySelector("#searchElement").addEventListener("click", this._clickEventRefresh);
+    this.shadowDOM.querySelector('#checkButtonElement')
+        .addEventListener('click', this._clickEvent);
+    this.shadowDOM.querySelector('#searchElement')
+        .addEventListener('click', this._clickEventRefresh);
   }
 }
 
-customElements.define("header-image", HeaderImage);
+customElements.define('header-image', HeaderImage);

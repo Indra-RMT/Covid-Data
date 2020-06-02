@@ -2,7 +2,7 @@ class AppFooter extends HTMLElement {
   constructor() {
     super();
     this.shadowDOM = this.attachShadow({
-      mode: "open"
+      mode: 'open',
     });
 
     this.render();
@@ -34,4 +34,4 @@ class AppFooter extends HTMLElement {
   }
 }
 
-customElements.define("app-footer", AppFooter);
+customElements.define('app-footer', AppFooter);

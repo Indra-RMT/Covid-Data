@@ -2,12 +2,12 @@ class SinggleData extends HTMLElement {
   constructor() {
     super();
     this.shadowDOM = this.attachShadow({
-      mode: "open"
+      mode: 'open',
     });
 
-    this.numberWithCommas = number => {
-      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
+    this.numberWithCommas = (number) => {
+      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    };
   }
 
   set data(covid) {
@@ -22,19 +22,23 @@ class SinggleData extends HTMLElement {
     this._lastUpdate = covid.lastUpdate.slice(0, 10);
     this._chart = {
       datasets: [{
-        data: [covid.percentageActive, covid.percentageRecovered, covid.percentageDeaths],
+        data: [
+          covid.percentageActive,
+          covid.percentageRecovered,
+          covid.percentageDeaths,
+        ],
         backgroundColor: [
           'rgba(255, 99, 132, 1)',
           'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)'
+          'rgba(255, 206, 86, 1)',
         ],
-        borderWidth: 2
+        borderWidth: 2,
       }],
       labels: [
         'Active',
         'Recovered',
-        'Deaths'
-      ]
+        'Deaths',
+      ],
     };
     this.render();
   }
@@ -161,17 +165,29 @@ class SinggleData extends HTMLElement {
               <tr>
                 <td>Active</td>
                 <td class="padding-colon"> : </td>
-                <td>${this.numberWithCommas(this._active)} <span class="percentage">(${this._percentageActive.toFixed(2)}%)</span></td>
+                <td>${this.numberWithCommas(this._active)} 
+                  <span class="percentage">
+                    (${this._percentageActive.toFixed(2)}%)
+                  </span>
+                </td>
               </tr>
               <tr>
                 <td>Recovered</td>
                 <td class="padding-colon"> : </td>
-                <td>${this.numberWithCommas(this._recovered)} <span class="percentage">(${this._percentageRecovered.toFixed(2)}%)</span></td>
+                <td>${this.numberWithCommas(this._recovered)}
+                  <span class="percentage">
+                    (${this._percentageRecovered.toFixed(2)}%)
+                  </span>
+                </td>
               </tr>
               <tr>
                 <td>Deaths</td>
                 <td class="padding-colon"> : </td>
-                <td>${this.numberWithCommas(this._deaths)} <span class="percentage">(${this._percentageDeaths.toFixed(2)}%)</span></td>
+                <td>${this.numberWithCommas(this._deaths)}
+                  <span class="percentage">
+                    (${this._percentageDeaths.toFixed(2)}%)
+                  </span>
+                </td>
               </tr>
             </table>
           </div>
@@ -179,7 +195,9 @@ class SinggleData extends HTMLElement {
             <canvas id="pie-chart"></canvas>
           </div>
         </div>
-        <div id="last-update"><small>Last Update : ${this._lastUpdate}</small></div>
+        <div id="last-update">
+          <small>Last Update : ${this._lastUpdate}</small>
+        </div>
       </div>
     `;
 
@@ -192,15 +210,17 @@ class SinggleData extends HTMLElement {
         backgroundColor: 'rgba(251, 85, 85, 0.4)',
         tooltips: {
           callbacks: {
-            label: function (tooltipItem, data) {
-              const percentage = (data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]).toFixed(2);
+            label: function(tooltipItem, data) {
+              const percentage =
+                (data.datasets[tooltipItem.datasetIndex]
+                    .data[tooltipItem.index]).toFixed(2);
               return `${percentage}%`;
-            }
-          }
-        }
+            },
+          },
+        },
       },
     });
   }
 }
 
-customElements.define("singgle-data", SinggleData);
+customElements.define('singgle-data', SinggleData);

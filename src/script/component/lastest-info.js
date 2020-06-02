@@ -2,7 +2,7 @@ class LastestInfo extends HTMLElement {
   constructor() {
     super();
     this.shadowDOM = this.attachShadow({
-      mode: "open"
+      mode: 'open',
     });
 
     this.render();
@@ -96,14 +96,19 @@ class LastestInfo extends HTMLElement {
       <article>
         <div class="box">
           <div class="line-1">COVID-19</div>
-          <div class="line-2">Get the lastest information from the WHO about coronavirus.</div>
+          <div class="line-2">
+            Get the lastest information from the WHO about coronavirus.
+          </div>
         </div>
         <div class="box-2">
-          <button onclick="location.href='https://www.who.int/emergencies/diseases/novel-coronavirus-2019'">Go to Web WHO</button>
+          <button onclick="location
+              .href='https://www.who.int/emergencies/diseases/novel-coronavirus-2019'">
+              Go to Web WHO
+          </button>
         </div>
       </article>
     `;
   }
 }
 
-customElements.define("lastest-info", LastestInfo);
+customElements.define('lastest-info', LastestInfo);

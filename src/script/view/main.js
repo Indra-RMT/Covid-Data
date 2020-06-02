@@ -1,200 +1,208 @@
-import "../component/header-image.js";
-import "../component/singgle-data.js";
-import "../component/daily-summary.js";
-import "../component/lastest-info.js";
-import "../component/app-footer.js";
-import moment from "moment";
+import '../component/header-image.js';
+import '../component/singgle-data.js';
+import '../component/daily-summary.js';
+import '../component/lastest-info.js';
+import '../component/app-footer.js';
+import moment from 'moment';
 import DataSource from '../data/data-source.js';
 
-const main = _ => {
-	headerImage();
-	worldData();
-	singgleData();
-	dailySummary();
+const main = (_) => {
+  headerImage();
+  worldData();
+  singgleData();
+  dailySummary();
 };
 
 
-const headerImage = _ => {
-	const searchElement = document.querySelector("header-image");
+const headerImage = (_) => {
+  const searchElement = document.querySelector('header-image');
 
-	const onButtonSearchClicked = _ => {
-		singgleData(searchElement.value);
-		dailySummary(searchElement.value);
-	};
+  const onButtonSearchClicked = (_) => {
+    singgleData(searchElement.value);
+    dailySummary(searchElement.value);
+  };
 
-	const onButtonRefreshClicked = _ => {
-		searchElement.refresh = "";
-	}
+  const onButtonRefreshClicked = (_) => {
+    searchElement.refresh = '';
+  };
 
-	searchElement.clickEvent = onButtonSearchClicked;
-	searchElement.refreshInput = onButtonRefreshClicked;
-}
-
-
-const worldData = _ => {
-	const headerImage = document.querySelector("header-image");
-
-	const getWorldData = async _ => {
-		try {
-			const result = await DataSource.worldData();
-			renderResult(result);
-		} catch (message) {
-			fallbackResult(message)
-		}
-	};
-
-	const getAllCountryName = async _ => {
-		try {
-			const result = await DataSource.getAllCountryName();
-			renderResultAllCountry(result);
-		} catch (message) {
-			fallbackResult(message)
-		}
-	};
-
-	const renderResult = results => {
-		headerImage.data = results;
-	};
-
-	const renderResultAllCountry = results => {
-		headerImage.allCountry = results;
-	};
-
-	const fallbackResult = message => {
-		headerImage.renderError(message);
-	};
-
-	getWorldData();
-	getAllCountryName();
-}
+  searchElement.clickEvent = onButtonSearchClicked;
+  searchElement.refreshInput = onButtonRefreshClicked;
+};
 
 
-const singgleData = (country = "Indonesia") => {
-	const singgleData = document.querySelector("singgle-data");
+const worldData = (_) => {
+  const headerImage = document.querySelector('header-image');
 
-	const getCountry = async _ => {
-		try {
-			const result = await DataSource.searchCountry(country);
-			result.country = country;
-			renderResult(result);
-		} catch (message) {
-			fallbackResult(message)
-		}
-	};
+  const getWorldData = async (_) => {
+    try {
+      const result = await DataSource.worldData();
+      renderResult(result);
+    } catch (message) {
+      fallbackResult(message);
+    }
+  };
 
-	const renderResult = results => {
-		results.active = results.confirmed.value - results.recovered.value - results.deaths.value;
-		results.percentageActive = results.active / results.confirmed.value * 100;
-		results.percentageRecovered = results.recovered.value / results.confirmed.value * 100;
-		results.percentageDeaths = results.deaths.value / results.confirmed.value * 100;
-		singgleData.data = results;
-	};
+  const getAllCountryName = async (_) => {
+    try {
+      const result = await DataSource.getAllCountryName();
+      renderResultAllCountry(result);
+    } catch (message) {
+      fallbackResult(message);
+    }
+  };
 
-	const fallbackResult = message => {
-		singgleData.renderError(message);
-	};
+  const renderResult = (results) => {
+    headerImage.data = results;
+  };
 
-	getCountry();
-}
+  const renderResultAllCountry = (results) => {
+    headerImage.allCountry = results;
+  };
+
+  const fallbackResult = (message) => {
+    headerImage.renderError(message);
+  };
+
+  getWorldData();
+  getAllCountryName();
+};
 
 
-const dailySummary = (country = "Indonesia") => {
-	const getDates = (startDate, stopDate) => {
-		var dateArray = [];
-		var currentDate = moment(startDate, "MM-DD-YYYY");
-		var stopDate = moment(stopDate, "MM-DD-YYYY");
-		while (currentDate <= stopDate) {
-			dateArray.push(moment(currentDate).format('MM-DD-YYYY'))
-			currentDate = moment(currentDate).add(1, 'days');
-		}
-		return dateArray;
-	}
+const singgleData = (country = 'Indonesia') => {
+  const singgleData = document.querySelector('singgle-data');
 
-	const compare = (a, b) => {
-		if (a.lastUpdate < b.lastUpdate) {
-			return -1;
-		}
-		if (a.lastUpdate > b.lastUpdate) {
-			return 1;
-		}
-		return 0;
-	}
+  const getCountry = async (_) => {
+    try {
+      const result = await DataSource.searchCountry(country);
+      result.country = country;
+      renderResult(result);
+    } catch (message) {
+      fallbackResult(message);
+    }
+  };
 
-	const getAllCountryByDate = async _ => {
-		let arrCountryByDate = [];
+  const renderResult = (results) => {
+    results.active =
+      results.confirmed.value - results.recovered.value - results.deaths.value;
+    results.percentageActive =
+      results.active / results.confirmed.value * 100;
+    results.percentageRecovered =
+      results.recovered.value / results.confirmed.value * 100;
+    results.percentageDeaths =
+      results.deaths.value / results.confirmed.value * 100;
+    singgleData.data = results;
+  };
 
-		try {
-			const resultName = await DataSource.getAllCountryName();
-			await Promise.all(rangeDate.map(async (date) => {
-				const resultByDate = await DataSource.getAllCountryByDate(date);
-				arrCountryByDate.push(resultByDate);
-			}));
-			renderResult(resultName, arrCountryByDate);
-		} catch (message) {
-			fallbackResult(message);
-		}
-	};
+  const fallbackResult = (message) => {
+    singgleData.renderError(message);
+  };
 
-	const makeLineChart = (resultName, arrCountryByDate) => {
-		const selectedCountry = {
-			countryRegion: null,
-			confirmed: [],
-			recovered: [],
-			deaths: [],
-			lastUpdate: []
-		}
+  getCountry();
+};
 
-		let arrResultName = [];
-		resultName.countries.forEach(function (resultName) {
-			arrResultName.push(resultName.name);
-		});
 
-		let temp = [];
-		arrCountryByDate.forEach(function (arrCountryByDate) {
-			let tempSelectedCountry = arrCountryByDate.find(o => o.countryRegion === country);
-			temp.push(tempSelectedCountry);
-		})
+const dailySummary = (country = 'Indonesia') => {
+  const getDates = (startDate, stopDate) => {
+    const dateArray = [];
+    let formatedStartDate = moment(startDate, 'MM-DD-YYYY');
+    const formatedStopDate = moment(stopDate, 'MM-DD-YYYY');
+    while (formatedStartDate <= formatedStopDate) {
+      dateArray.push(moment(formatedStartDate).format('MM-DD-YYYY'));
+      formatedStartDate = moment(formatedStartDate).add(1, 'days');
+    }
+    return dateArray;
+  };
 
-		let sortedSelectedCountry = temp.sort(compare);
-		sortedSelectedCountry.forEach(function (eachDay) {
-			if (eachDay !== undefined) {
-				selectedCountry.countryRegion = eachDay.countryRegion;
-				selectedCountry.confirmed.push(eachDay.confirmed);
-				selectedCountry.recovered.push(eachDay.recovered);
-				selectedCountry.deaths.push(eachDay.deaths);
-				selectedCountry.lastUpdate.push(moment(eachDay.lastUpdate.slice(0, 10), 'YYYY-MM-DD').format('DD MMMM'));
-			}
-		});
+  const compare = (a, b) => {
+    if (a.lastUpdate < b.lastUpdate) {
+      return -1;
+    }
+    if (a.lastUpdate > b.lastUpdate) {
+      return 1;
+    }
+    return 0;
+  };
 
-		let allCountry = [];
-		arrResultName.forEach(function (resultName) {
-			let temp = [];
-			arrCountryByDate.forEach(function (arrCountryByDate) {
-				let tempAllCountry = arrCountryByDate.find(o => o.countryRegion === resultName);
-				temp.push(tempAllCountry);
-			});
-			let sortedAllCountry = temp.sort(compare);
-			allCountry.push(sortedAllCountry);
-		});
+  const getAllCountryByDate = async (_) => {
+    const arrCountryByDate = [];
 
-		dailySummaryElement.data = selectedCountry;
-	}
+    try {
+      const resultName = await DataSource.getAllCountryName();
+      await Promise.all(rangeDate.map(async (date) => {
+        const resultByDate = await DataSource.getAllCountryByDate(date);
+        arrCountryByDate.push(resultByDate);
+      }));
+      renderResult(resultName, arrCountryByDate);
+    } catch (message) {
+      fallbackResult(message);
+    }
+  };
 
-	const renderResult = (resultsByDate, resultsName) => {
-		makeLineChart(resultsByDate, resultsName);
-	};
+  const makeLineChart = (resultName, arrCountryByDate) => {
+    const selectedCountry = {
+      countryRegion: null,
+      confirmed: [],
+      recovered: [],
+      deaths: [],
+      lastUpdate: [],
+    };
 
-	const fallbackResult = results => {
-		console.log(results)
-	};
+    const arrResultName = [];
+    resultName.countries.forEach(function(resultName) {
+      arrResultName.push(resultName.name);
+    });
 
-	const dailySummaryElement = document.querySelector("daily-summary");
+    const temp = [];
+    arrCountryByDate.forEach(function(arrCountryByDate) {
+      const tempSelectedCountry =
+        arrCountryByDate.find((o) => o.countryRegion === country);
+      temp.push(tempSelectedCountry);
+    });
 
-	const fromDate = moment().add(-30, 'days').format("MM-DD-YYYY");
-	const toDate = moment().format("MM-DD-YYYY");
-	const rangeDate = getDates(fromDate, toDate);
+    const sortedSelectedCountry = temp.sort(compare);
+    sortedSelectedCountry.forEach(function(eachDay) {
+      if (eachDay !== undefined) {
+        selectedCountry.countryRegion = eachDay.countryRegion;
+        selectedCountry.confirmed.push(eachDay.confirmed);
+        selectedCountry.recovered.push(eachDay.recovered);
+        selectedCountry.deaths.push(eachDay.deaths);
+        selectedCountry.lastUpdate
+            .push(moment(eachDay.lastUpdate.slice(0, 10), 'YYYY-MM-DD')
+                .format('DD MMMM'));
+      }
+    });
 
-	getAllCountryByDate();
-}
+    const allCountry = [];
+    arrResultName.forEach(function(resultName) {
+      const temp = [];
+      arrCountryByDate.forEach(function(arrCountryByDate) {
+        const tempAllCountry = arrCountryByDate
+            .find((o) => o.countryRegion === resultName);
+        temp.push(tempAllCountry);
+      });
+      const sortedAllCountry = temp.sort(compare);
+      allCountry.push(sortedAllCountry);
+    });
+
+    dailySummaryElement.data = selectedCountry;
+  };
+
+  const renderResult = (resultsByDate, resultsName) => {
+    makeLineChart(resultsByDate, resultsName);
+  };
+
+  const fallbackResult = (results) => {
+    console.log(results);
+  };
+
+  const dailySummaryElement = document.querySelector('daily-summary');
+
+  const fromDate = moment().add(-30, 'days').format('MM-DD-YYYY');
+  const toDate = moment().format('MM-DD-YYYY');
+  const rangeDate = getDates(fromDate, toDate);
+
+  getAllCountryByDate();
+};
 
 export default main;

@@ -2,7 +2,7 @@ class DailySummary extends HTMLElement {
   constructor() {
     super();
     this.shadowDOM = this.attachShadow({
-      mode: "open"
+      mode: 'open',
     });
   }
 
@@ -77,7 +77,7 @@ class DailySummary extends HTMLElement {
 
     const lineChartElement = this.shadowDOM.querySelector('#lineChart');
 
-    const chart = new Chart(lineChartElement, {
+    new Chart(lineChartElement, {
       // The type of chart we want to create
       type: 'line',
       responsive: true,
@@ -89,17 +89,17 @@ class DailySummary extends HTMLElement {
           label: 'Deaths',
           backgroundColor: 'rgb(255,206,85)',
           borderColor: 'rgb(255,206,85)',
-          data: this._deaths
+          data: this._deaths,
         }, {
           label: 'Recovered',
           backgroundColor: 'rgb(54,162,235)',
           borderColor: 'rgb(54,162,235)',
-          data: this._recovered
+          data: this._recovered,
         }, {
           label: 'Confirmed',
           backgroundColor: 'rgb(255, 99, 132)',
           borderColor: 'rgb(255, 99, 132)',
-          data: this._confirmed
+          data: this._confirmed,
         }],
       },
 
@@ -111,33 +111,33 @@ class DailySummary extends HTMLElement {
         maintainAspectRatio: false,
         tooltips: {
           callbacks: {
-            label: function (tooltipItem, data) {
-              var value = data.datasets[0].data[tooltipItem.index];
+            label: function(tooltipItem, data) {
+              const value = data.datasets[0].data[tooltipItem.index];
               if (parseInt(value) >= 1000) {
-                return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
               } else {
                 return value;
               }
-            }
-          }
+            },
+          },
         },
         scales: {
           yAxes: [{
             ticks: {
               beginAtZero: true,
-              callback: function (value, index, values) {
+              callback: function(value, index, values) {
                 if (parseInt(value) >= 1000) {
-                  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
                 } else {
                   return value;
                 }
-              }
-            }
-          }]
-        }
-      }
+              },
+            },
+          }],
+        },
+      },
     });
   }
 }
 
-customElements.define("daily-summary", DailySummary);
+customElements.define('daily-summary', DailySummary);
